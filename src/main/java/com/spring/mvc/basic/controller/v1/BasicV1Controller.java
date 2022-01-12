@@ -16,7 +16,7 @@ public class BasicV1Controller {
     //요청 처리 메서드
 
     @GetMapping("/v1/hello")  // 클라이언트가 /v1/hello 라고 GET으로 여청했을 시 작동
-    @ResponseBody  // 응답 내용에 관한 것
+    @ResponseBody  // 응답 내용에 관한 것, 브라우저에게 데이터를 직접 리턴
     public String hello() {
         System.out.println("/v1/hello GET 요청!! 발생!!");
         return "안녕~~ 손님~~!!";
@@ -44,7 +44,7 @@ public class BasicV1Controller {
     @GetMapping("/hobby")
     @ResponseBody
     public Map<String, String> hobby() {
-        HashMap<String, String> hobbies = new HashMap<>();
+        Map<String, String> hobbies = new HashMap<>();
         hobbies.put("activity", "축구");
         hobbies.put("study", "영어회화");
         hobbies.put("home", "영화감상");
