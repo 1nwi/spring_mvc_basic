@@ -21,7 +21,8 @@ public class BasicV2Controller {
 
     @GetMapping("/gugu7")
     public String gugu7() {
-        return "/WEB-INF/views/gugu7.jsp";
+//        return "/WEB-INF/views/gugu7.jsp";
+        return "gugu7";
     }
 
     // 요청 파라미터 읽기(쿼리스트링 읽기) : 클라이언트가 서버로 전송한 데이터
@@ -42,7 +43,8 @@ public class BasicV2Controller {
         System.out.println(petInfo);
         //JSP 파일에게 데이터를 전송
         model.addAttribute("pi", petInfo);
-        return "/WEB-INF/views/pet-result.jsp";
+//        return "/WEB-INF/views/pet-result.jsp";
+        return "pet-result";
     }
 
 
@@ -50,7 +52,8 @@ public class BasicV2Controller {
     @GetMapping("/pet/form")
     public String petForm() {
 
-        return "/WEB-INF/views/pet-form.jsp";
+//        return "/WEB-INF/views/pet-form.jsp";
+        return "pet-form";
     }
 
     // =================== 실습문제 =====================//
@@ -68,25 +71,37 @@ public class BasicV2Controller {
 
     @GetMapping("/user/form")
     public String userForm() {
-        return "/WEB-INF/views/register.jsp";
+        return "register";
     }
 
     @PostMapping("/user/join")
     public String join(User user, Model model) {
         model.addAttribute("ui", user);
-        return "/WEB-INF/views/user-result.jsp";
+        return "user-result";
     }
 
-
+    // ====== bmi 문제 ====== //
     @GetMapping("/bmi/form")
     public String bmiForm() {
-        return "/WEB-INF/views/bmi-form.jsp";
+        return "bmi-form";
     }
 
-    @PostMapping("/bmi/info")
-    public String bInfo(Bmi bmi, Model model) {
-        model.addAttribute("b",bmi);
-        return "/WEB-INF/views/bmi-result.jsp";
+    @PostMapping("/bmi/calc")
+    public String bmiCalc(BmiData bmiData, Model model) {
+        // 공식 : kg / (m * m)
+        double kg = bmiData.getWeight();
+        double m = bmiData.getHeight() / 100;
+        double bmi = kg / (m * m);
+        bmi = Math.round(bmi * 100) / 100.0;
+
+        model.addAttribute("userName",bmiData.getName());
+        model.addAttribute("userHeight",bmiData.getHeight());
+        model.addAttribute("userWeight",bmiData.getWeight());
+
+        model.addAttribute("bmi",bmi);
+
+        return "bmi-result";
+
     }
 
 

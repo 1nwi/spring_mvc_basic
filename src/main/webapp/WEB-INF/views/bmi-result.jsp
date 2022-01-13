@@ -9,10 +9,10 @@
 <body>
 
     <h3>
-        # 이름: ${b.name}  <br>
-        # 키: ${b.height} <br>
-        # 몸무게: ${b.weight} <br>
-        # BMI 수치 : ${b.weight / (b.height * b.height)}
+        # 이름: ${userName}  <br>
+        # 키: ${userHeight} cm <br>
+        # 몸무게: ${userWeight} kg <br>
+        # BMI 지수 : ${bmi}
     </h3>
 
 

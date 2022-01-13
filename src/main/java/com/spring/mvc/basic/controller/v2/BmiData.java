@@ -5,7 +5,7 @@ import lombok.*;
 
 @Setter @Getter @ToString
 @NoArgsConstructor @AllArgsConstructor
-public class Bmi {
+public class BmiData {
 
     private double height;
     private double weight;

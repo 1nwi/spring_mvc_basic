@@ -21,12 +21,12 @@
 <body>
 
     <div class="reg">
-        <form action="/bmi/info" method="POST">
+        <form action="/bmi/calc" method="POST">
             # 이름: <input type="text" name="name"> <br>
-            # 키(cm): <input type="text" name="height"> <br>
-            # 몸무게(kg): <input type="text" name="weight"> <br>
+            # 신장: <input type="text" name="height" placeholder="cm로 입력"> <br>
+            # 채중: <input type="text" name="weight" placeholder="kg로 입력"> <br>
 
-            <button type="submit">제출</button>
+            <button type="submit">확인</button>
         </form>
     </div>
 
