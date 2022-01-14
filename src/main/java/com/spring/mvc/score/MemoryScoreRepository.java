@@ -1,6 +1,5 @@
 package com.spring.mvc.score;
 
-import com.spring.mvc.employee.Employee;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Repository;
 
@@ -10,40 +9,40 @@ import java.util.List;
 import java.util.Map;
 
 @Repository
-@Log4j2
 public class MemoryScoreRepository implements ScoreRepository {
 
-    private static Map<Integer, Score> scoreMap = new HashMap<>();
+    private static final Map<Integer, Score> scoreMap = new HashMap<>();
 
     static {
-        scoreMap.put(1, new Score("김철수",98,87,56));
-        scoreMap.put(2, new Score("홍길동",78,65,54));
-        scoreMap.put(3, new Score("박영희",23,99,67));
+        scoreMap.put(1, new Score("홍길동", 98, 70, 50));
+        scoreMap.put(2, new Score("박영희", 60, 90, 100));
+        scoreMap.put(3, new Score("김철수", 93, 40, 80));
     }
 
     @Override
-    public void save(Score score) {
+    public boolean save(Score score) {
         scoreMap.put(score.getStuNum(), score);
-        log.info(scoreMap);
+        return true;
     }
 
     @Override
     public List<Score> findAll() {
-        List<Score> scores = new ArrayList<>();
+//        List<Score> scoreList = (List<Score>) scoreMap.values();
+        List<Score> scoreList = new ArrayList<>();
         for (Integer key : scoreMap.keySet()) {
-            scores.add(scoreMap.get(key));
+            scoreList.add(scoreMap.get(key));
         }
-        return scores;
+        return scoreList;
     }
 
     @Override
     public Score findOne(int stuNum) {
-        return null;
+        return scoreMap.get(stuNum);
     }
 
-
     @Override
-    public void remove(int stuNum) {
+    public boolean remove(int stuNum) {
         scoreMap.remove(stuNum);
+        return true;
     }
 }
