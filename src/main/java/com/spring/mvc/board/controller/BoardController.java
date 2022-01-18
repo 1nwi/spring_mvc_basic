@@ -73,7 +73,7 @@ public class BoardController {
     @PostMapping("/board/modify")
     public String modify(ModifyBoard modArticle) {
         Board board = boardService.getContent(modArticle.getBoardNo());
-        board.setWriter(modArticle.getTitle());
+        board.setWriter(modArticle.getWriter());
         board.setTitle(modArticle.getTitle());
         board.setContent(modArticle.getContent());
         boardService.modifyArticle(board);
