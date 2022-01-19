@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@Repository
+@Repository("mr")
 public class MemoryScoreRepository implements ScoreRepository {
 
     private static final Map<Integer, Score> scoreMap = new HashMap<>();
