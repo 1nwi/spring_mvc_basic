@@ -78,6 +78,27 @@ public class JDBCScoreRepository implements  ScoreRepository{
 
     @Override
     public Score findOne(int stuNum) {
+        try {
+            //1. 드라이버 로딩
+            Class.forName(driverName);
+            //2. 연결정보 객체 생성
+            Connection conn = DriverManager.getConnection(url, uid, upw);
+            //3. SQL실행객체 생성
+            String sql = "SELECT * FROM score WHERE stu_num = ?";
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            //3-1. ?값을 채우기 (순번은 1번부터 시작)
+            pstmt.setInt(1, stuNum);
+            //3-2. SQL 실행 명령
+            // a : INSERT, UPDATE, DELETE - executeUpdate();
+            // b : SELECT                 - executeQuery();
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {  // 마우스 커서 이동
+                //컬럼 데이터 추출하기 (추출데이터에 해당하는 열 이름)
+                return new Score(rs);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
@@ -94,7 +115,7 @@ public class JDBCScoreRepository implements  ScoreRepository{
             PreparedStatement pstmt = conn.prepareStatement(sql);
 
             //3-1. ?값을 채우기 (순번은 1번부터 시작)
-            pstmt.setString(1,"zzz1234");
+            pstmt.setInt(1,stuNum);
 
             //3-2. SQL 실행 명령
             // a : INSERT, UPDATE, DELETE - executeUpdate();

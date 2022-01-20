@@ -21,4 +21,9 @@ public interface BoardRepository {
     //게시글 수정
     void modifyArticle(Board article);
 
+    //조회수 상승
+    void upViewCount(int boardNo);
+
+    //시간 등록
+
 }
