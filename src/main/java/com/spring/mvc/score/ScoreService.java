@@ -2,7 +2,6 @@
 package com.spring.mvc.score;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,13 +11,23 @@ import java.util.List;
 @Service
 public class ScoreService {
 
+    //JDBC 사용
+    /*
     private final ScoreRepository scoreRepository;
 
     @Autowired
     public ScoreService(@Qualifier("jr")ScoreRepository scoreRepository) {
         this.scoreRepository = scoreRepository;
     }
+    */
 
+    //마이바티스 사용
+    private final ScoreMapper scoreRepository;
+
+    @Autowired
+    public ScoreService(ScoreMapper scoreRepository) {
+        this.scoreRepository = scoreRepository;
+    }
 
     //점수 전체조회 요청 중간처리
     public List<Score> findAll() {
