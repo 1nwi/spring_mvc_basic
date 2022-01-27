@@ -6,7 +6,10 @@
 <!-- namespace 에는 사용할 인터페이스의 패키지포함 풀네임을 적습니다. -->
 <mapper namespace="com.spring.mvc.board.repository.BoardMapper">
     <insert id="insertArticle">
-        INSERT INTO board (board_no, writer, title, content) VALUES (seq_board.nextval, #{writer}, #{title}, #{content})
+        INSERT INTO board
+            (board_no, writer, title, content, account)
+        VALUES
+            (seq_board.nextval, #{writer}, #{title}, #{content}, #{account})
     </insert>
 
     <delete id="deleteArticle">

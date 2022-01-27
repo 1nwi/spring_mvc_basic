@@ -4,6 +4,7 @@ import com.spring.mvc.board.domain.Board;
 import com.spring.mvc.board.domain.ModifyBoard;
 import com.spring.mvc.board.repository.BoardRepository;
 import com.spring.mvc.board.service.BoardService;
+import com.spring.mvc.member.domain.Member;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -27,7 +29,11 @@ public class BoardController {
 
     //글 작성 화면 요청
     @GetMapping("/board/write")
-    public String write() {
+    public String write(HttpSession session) {
+        Member loginUser =(Member) session.getAttribute("loginUser");
+        if (loginUser == null) {
+            return "redirect:/login";
+        }
         return "board/write";
     }
 
