@@ -54,7 +54,7 @@ class MemberRepositoryTest {
 
         // 로그인 시도 아이디, 비밀번호
         String inputId = "def1234", inputPw = "aaa1111";
-        // 아이디를 가지고 회원정보 조회
+        // 아이디를 가지고 회원정보 조회  //조회가 안되면 null 되면 모든정보를 불러옵니다.
         Member member = memberRepository.findMember(inputId);
 
         if (member != null) {
